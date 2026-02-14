@@ -5,9 +5,40 @@
   --muted:#6b7280;
 }
 *{box-sizing:border-box}
-body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px}
-.card{width:100%;max-width:640px;background:var(--card);padding:24px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.08)}
-h1{margin:0 0 16px 0;font-size:28px}
+body{font-family:'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;background:linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);background-size:400% 400%;animation:gradient 15s ease infinite}
+@keyframes gradient{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.app{width:100%;max-width:500px}
+.card{background:#ffffff;padding:48px 32px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
+h1,h3{margin:0 0 24px 0;font-size:28px;font-weight:600;text-align:center;color:#111}
+h3{font-size:24px}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:14px;font-weight:500;color:#333;margin-bottom:8px}
+.form-group input{width:100%;padding:12px 16px;border:1.5px solid #e0e0e0;border-radius:10px;font-size:14px;transition:all 0.3s;font-family:inherit}
+.form-group input:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,0.1)}
+.form-group input::placeholder{color:#aaa}
+.forgot-link{text-align:right;margin-bottom:16px}
+.forgot-link a{font-size:13px;color:#667eea;text-decoration:none;font-weight:500}
+.forgot-link a:hover{text-decoration:underline}
+.auth-button{width:100%;padding:14px;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.3s;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);color:white;text-transform:uppercase;letter-spacing:0.5px}
+.auth-button:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(102,126,234,0.3)}
+.auth-button:active{transform:translateY(0)}
+.auth-divider{text-align:center;margin:24px 0;color:#aaa;font-size:13px;position:relative}
+.auth-divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:#e0e0e0;transform:scaleX(0.8)}
+.auth-divider span{background:white;padding:0 8px;position:relative}
+.social-icons{display:flex;justify-content:center;gap:16px;margin:20px 0}
+.social-icons a{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;transition:all 0.3s;text-decoration:none}
+.social-icons a:hover{transform:translateY(-3px)}
+.facebook{background:#3b5998;color:white}
+.twitter{background:#1da1f2;color:white}
+.google{background:#db4437;color:white}
+.auth-footer{text-align:center;margin-top:24px;font-size:14px;color:#666}
+.auth-footer a{color:#667eea;text-decoration:none;font-weight:600}
+.auth-footer a:hover{text-decoration:underline}
+.error-msg{color:#e74c3c;background:#fadbd8;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:13px;border-left:4px solid #e74c3c}
 .new-todo{display:flex;gap:8px;margin-bottom:16px}
 .new-todo input{flex:1;padding:10px 12px;border:1px solid #e6e9ee;border-radius:8px}
 .new-todo button{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;border:0}

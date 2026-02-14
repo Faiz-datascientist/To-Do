@@ -12,6 +12,7 @@ export default function App() {
   const [todos, setTodos] = useState([])
   const [token, setToken] = useState(localStorage.getItem('token'))
   const [username, setUsername] = useState(localStorage.getItem('user'))
+  const [authMode, setAuthMode] = useState('login')
   
   console.log('App render, token:', token, 'username:', username)
 
@@ -103,11 +104,11 @@ export default function App() {
     return (
       <div className="app">
         <main className="card">
-          <h1>To‑Do — Sign in</h1>
-          <div style={{ display: 'flex', gap: 12 }}>
-            <Login onAuth={handleAuth} />
-            <Register onAuth={handleAuth} />
-          </div>
+          {authMode === 'login' ? (
+            <Login onAuth={handleAuth} onSwitchMode={setAuthMode} />
+          ) : (
+            <Register onAuth={handleAuth} onSwitchMode={setAuthMode} />
+          )}
         </main>
       </div>
     )
@@ -116,11 +117,11 @@ export default function App() {
   return (
     <div className="app">
       <main className="card">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h1>To‑Do</h1>
-          <div>
-            <span style={{ marginRight: 12 }}>Signed in as {username}</span>
-            <button onClick={logout}>Log out</button>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+          <h1 style={{ margin: 0 }}>To‑Do</h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span style={{ fontSize: 14, color: '#666' }}>👤 {username}</span>
+            <button onClick={logout} style={{ padding: '8px 16px', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', borderRadius: 8, cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>Log out</button>
           </div>
         </div>
         <NewTodoForm onAdd={add} />
