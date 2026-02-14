@@ -46,9 +46,29 @@ async function init() {
       user_id INTEGER,
       text TEXT,
       done INTEGER DEFAULT 0,
+      due_date TEXT,
+      tags TEXT,
       FOREIGN KEY(user_id) REFERENCES users(id)
     )`
   )
+
+  await run(
+    `CREATE TABLE IF NOT EXISTS refresh_tokens (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER,
+      token_hash TEXT UNIQUE,
+      expires_at TEXT,
+      revoked_at TEXT,
+      created_at TEXT,
+      FOREIGN KEY(user_id) REFERENCES users(id)
+    )`
+  )
+
+  const columns = await all(`PRAGMA table_info(todos)`)
+  const hasDue = columns.some((c) => c.name === 'due_date')
+  const hasTags = columns.some((c) => c.name === 'tags')
+  if (!hasDue) await run(`ALTER TABLE todos ADD COLUMN due_date TEXT`)
+  if (!hasTags) await run(`ALTER TABLE todos ADD COLUMN tags TEXT`)
 }
 
 module.exports = { db, run, get, all, init }
