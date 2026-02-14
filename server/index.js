@@ -6,7 +6,7 @@ const { run, get, all, init } = require('./db')
 
 const SECRET = 'dev_secret_change_me'
 const app = express()
-app.use(cors())
+app.use(cors({ origin: '*', credentials: false }))
 app.use(express.json())
 
 async function start() {

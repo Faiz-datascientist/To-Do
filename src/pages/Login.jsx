@@ -13,12 +13,16 @@ export default function Login({ onAuth, onSwitchMode }) {
     setError(null)
     setLoading(true)
     try {
+      console.log('Logging in with:', { username, api: API })
       const res = await fetch(`${API}/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) })
+      console.log('Response status:', res.status)
       const data = await res.json()
+      console.log('Response data:', data)
       if (!res.ok) return setError(data.error || 'Login failed')
       onAuth(data)
     } catch (e) {
-      setError('Network error')
+      console.error('Login error:', e)
+      setError(e.message || 'Network error')
     } finally {
       setLoading(false)
     }
