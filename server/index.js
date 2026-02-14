@@ -12,6 +12,10 @@ app.use(express.json())
 async function start() {
   await init()
 
+  app.get('/', (req, res) => {
+    res.json({ message: 'To-Do API running', version: '0.1.0' })
+  })
+
   app.post('/api/register', async (req, res) => {
     const { username, password } = req.body
     if (!username || !password) return res.status(400).json({ error: 'Missing fields' })

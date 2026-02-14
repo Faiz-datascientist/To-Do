@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const API = process.env.REACT_APP_API || 'http://localhost:4000/api'
+const API = import.meta.env.VITE_API || 'http://localhost:4000/api'
 
 export default function Register({ onAuth }) {
   const [username, setUsername] = useState('')

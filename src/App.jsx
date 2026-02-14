@@ -4,12 +4,16 @@ import NewTodoForm from './components/NewTodoForm'
 import Login from './pages/Login'
 import Register from './pages/Register'
 
-const API = process.env.REACT_APP_API || 'http://localhost:4000/api'
+const API = import.meta.env.VITE_API || 'http://localhost:4000/api'
+
+console.log('App component loaded, API:', API)
 
 export default function App() {
   const [todos, setTodos] = useState([])
   const [token, setToken] = useState(localStorage.getItem('token'))
   const [username, setUsername] = useState(localStorage.getItem('user'))
+  
+  console.log('App render, token:', token, 'username:', username)
 
   useEffect(() => {
     if (token) fetchTodos()
